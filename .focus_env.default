@@ -1,0 +1,4 @@
+set -a 
+SLACK_USER_TOKEN=""
+FOCUS_CALENDAR_NAME=""
+
