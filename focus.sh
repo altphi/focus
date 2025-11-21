@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 SCRIPT_DIR="$( cd "$( dirname "$(readlink -f "${BASH_SOURCE[0]}")" )" && pwd )"
 . "${SCRIPT_DIR}/.focus_env"
 
@@ -36,10 +37,11 @@ deno run --allow-env --allow-net "${SCRIPT_DIR}/slack-status/status.ts" --text "
 
 gcalcli --calendar "${FOCUS_CALENDAR_NAME}" add --title "Focusing on $title" --when "now" --duration "${minutes}" --description="Focus time" --noprompt
 
-# Turn on osx focus mode
-shortcuts run "Focus On"
+[[ $OSTYPE == darwin* ]] && shortcuts run "Focus On"
+[[ $OSTYPE == linux* ]] && ./dnd-toggle.sh on
 
 "${SCRIPT_DIR}/shell-timer/timer.sh" "${minutes}"
 
-shortcuts run "Focus Off"
+[[ $OSTYPE == darwin* ]] && shortcuts run "Focus Off"
+[[ $OSTYPE == linux* ]] && ./dnd-toggle.sh off
 deno run --allow-env --allow-net "${SCRIPT_DIR}/slack-status/status.ts" --clear

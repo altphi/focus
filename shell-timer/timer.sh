@@ -33,4 +33,6 @@ while [ $time -gt 0 ]; do
 done
 clear
 figlet "Time's up!"
-osascript -e 'display notification "Time'\''s up" with title "Shell Timer"'
+
+[[ "$OSTYPE" == darwin* ]] && osascript -e 'display notification "Time'\''s up" with title "Shell Timer"'
+[[ "$OSTYPE" == linux* ]] && notify-send "Time's up!"

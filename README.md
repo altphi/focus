@@ -8,6 +8,13 @@ Single command that sets slack status and notifications, adds calendar entry for
 4. Symlink focus.sh to something in your path, e.g. to `~/bin/focus`.
 5. Using the shortcuts.app in OSX, create a "Focus On" and "Focus Off" shortcut that does just that (turns on or off Focus mode).
 
+### for mako on linux
+6. add this to mako config
+```
+[mode=do-not-disturb]
+invisible=1
+```
+
 ## usage
 Run `focus <minutes> <title>` to
 1. Create a calendar event for the alloted time.
